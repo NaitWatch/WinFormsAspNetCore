@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WinFormsApp.Controllers
+namespace WinFormsAspNetCore.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -19,9 +19,15 @@ namespace WinFormsApp.Controllers
             _logger = logger;
         }
 
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            Program.MainForm.Invoke(new Action(() =>
+            {
+                 Program.MainForm.Text += "hello";
+            }));
+  
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),

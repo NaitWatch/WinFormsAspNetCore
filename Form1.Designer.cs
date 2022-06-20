@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp
+﻿namespace WinFormsAspNetCore
 {
     partial class Form1
     {

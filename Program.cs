@@ -5,10 +5,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.EventLog;
 using Microsoft.OpenApi.Models;
 
-namespace WinFormsApp
+namespace WinFormsAspNetCore
 {
     public class Program
     {
+        public static Form1 MainForm { get; private set; }
+
         [STAThread]
         public static void Main(string[] args)
         {
@@ -18,6 +20,8 @@ namespace WinFormsApp
 
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole();
+
+            builder.Services.AddMvc().AddXmlDataContractSerializerFormatters();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,7 +44,7 @@ namespace WinFormsApp
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
@@ -48,7 +52,9 @@ namespace WinFormsApp
 
             app.RunAsync();
 
-            Application.Run(app.Services.GetRequiredService<Form1>());
+            MainForm = app.Services.GetRequiredService<Form1>();
+
+            Application.Run(MainForm);
 
             app.StopAsync();
         }

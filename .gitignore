@@ -4,6 +4,6 @@ bin/**
 obj/**
 # ignores everything inside the .vs directory
 .vs/**
-
+# ignores every file contains secret
 *secret*.*
 

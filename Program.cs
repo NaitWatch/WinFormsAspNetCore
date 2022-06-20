@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.EventLog;
 using Microsoft.OpenApi.Models;
 
 namespace WinFormsApp
@@ -14,7 +16,8 @@ namespace WinFormsApp
 
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,8 +48,7 @@ namespace WinFormsApp
 
             app.RunAsync();
 
-            Form1 frm = app.Services.GetRequiredService<Form1>();
-            Application.Run(frm);
+            Application.Run(app.Services.GetRequiredService<Form1>());
 
             app.StopAsync();
         }

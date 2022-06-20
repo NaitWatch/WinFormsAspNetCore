@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,12 @@ namespace WinFormsApp
 {
     public partial class Form1 : Form
     {
-        public Form1(Task? task)
+        private readonly ILogger _logger;
+
+        public Form1(ILogger<Form1> logger)
         {
             InitializeComponent();
+            _logger = logger;
         }
 
         private async void Form1_Load(object sender, EventArgs e)

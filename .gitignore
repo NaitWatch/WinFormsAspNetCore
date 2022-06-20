@@ -1,7 +1,9 @@
-**/bin/Debug/**
-**/bin/Release/**
-**/obj/Debug/**
-**/obj/Release/**
-**/.vs/**
+# ignores everything inside the bin directory
+bin/**
+# ignores everything inside the obj directory
+obj/**
+# ignores everything inside the .vs directory
+.vs/**
 
+*secret*.*
 
